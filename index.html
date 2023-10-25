@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+
+
+    <link href="style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <title>projet de groupe</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="nav">
+                <div class="logo">
+                    <h1 class="title"><span class="be">be</span>movies</h1>
+                </div>
+                <ul class="nav_list">
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Latest</a></li>
+                    <li><a href="#">Genres</a></li>
+                    <li><a href="#" id="register">Register</a></li>
+                    <li><a href="#" id="register">Signin</a></li>
+                </ul>
+            </div>
+        </header>
+    </div>
+
+    <div id="modal-popup" class="modal">
+        <div class="modal_content">
+            <a href="#" id='closePopUp' class="modal_close">&times;</a>
+            <div class="buttons">
+                <button class="signup">Signup</button>
+                <button class="login">login</button>
+            </div>
+            <form>
+
+                <div class="form-group">
+                    <label for="username"></label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password"></label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password">
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p class="forgot">i forgot my password</p>
+                <p class="member">Not a member yet? <a href="#" class="signUp"> Sign up</a></p>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- ////////////////////////// SECTION SEARCH ////////////////////////////////////// -->
+
+
+    <!-- RESULTAT RECHERCHE -->
+
+    <section class="search">
+        <div class="container">
+            <form id="search_films">
+                <input id="searchField" type="text" placeholder="Search Movie" />
+                <button><svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16" fill="none">
+                        <path d="M12 1L19 8M19 8L12 15M19 8H1" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg></button>
+            </form>
+
+
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper" id="container_searchFilms">
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+    <!-- //////////////////////// SECTION LATEST_RELEASES ////////////////////////////// -->
+
+
+    <section class="latest_releases">
+        <div class="container">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper" id="container_searchFilms">
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- ////////////////////// SECTION GENRES //////////////////////////////////////////// -->
+
+
+    <section class="section_genre">
+        <div class="container">
+            <p>Movies by genre</p>
+
+            <ul class="genre_list">
+                <li><a href="#">Comedy</a></li>
+                <li><a href="#">Drame</a></li>
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Romance</a></li>
+                <li><a href="#">Fantasy</a></li>
+                <li><a href="#">Animation</a></li>
+            </ul>
+
+            <hr>
+
+            <div class="genre">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide"></div>
+                        <div class="swiper-slide"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    </div>
+
+</body>
+
+<!-- ///////////////////////////////// FOOTER ////////////////////////////////////////////// -->
+
+<footer>
+    <div class="container">
+        <div class="footer">
+            <div class="logo">
+                <h1><span class="be">be</span>movies</h1>
+            </div>
+            <ul class="footer_nav">
+                <li><a href="#">Search</a></li>
+                <li><a href="#">Latest</a></li>
+                <li><a href="#">Genres</a></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="#">Signin</a></li>
+            </ul>
+            <div class="copyright">
+                <p>@2023 - All rights reserved</p>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</footer>
+
+
+</html>
