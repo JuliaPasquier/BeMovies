@@ -128,13 +128,14 @@ button {
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
-  max-width: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.img_modal {
+  text-align: center;
 }
 
-.modal_content h1 {
-  margin-top: 0;
-}
+
 
 /* ///////////////////////// SLIDE //////////////////////////////// */
 
@@ -313,7 +314,6 @@ ul li a {
 .modal_content {
   padding: 20px;
   background-color: black;
-  width: 300px;
   z-index: 1;
 }
 
@@ -411,4 +411,11 @@ ul li a {
   line-height: normal;
   margin-bottom: 4rem;
   text-decoration: none;
+}
+
+/* /////////////// HOVER ////////////////// */
+
+.hoverInfo{
+  position: absolute;
+  display: none;
 }

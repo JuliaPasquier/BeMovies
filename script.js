@@ -71,14 +71,19 @@ function createModal(movies) {
     const template = `
       <div id="modal-${movie.id}" class="modal">
         <div class="modal_content">    
-        <a href="#" class="modal_close">&times;</a>
-          <h1>${movie.title}</h1>
+        
+          <div class="img_modal">
           <img src="http://image.tmdb.org/t/p/w185${movie.poster_path}" alt="${movie.id}"> 
+          </div>
+          <div class="infos_films_modal">
+          <a href="#" class="modal_close">&times;</a>
+          <h1>${movie.title}</h1>
           <p>${retrieveYear(movie.release_date)}</p>
             <img src="Vector (3).png">
           <p>${movie.vote_average}</p>
           <p>${movie.genre_ids}</p>
           <p> "${movie.overview}"</p>
+          </div>
         </div>
       </div>
     `;
