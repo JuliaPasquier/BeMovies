@@ -1,16 +1,72 @@
-var newSwiper = new Swiper(".mySwiper", {
-  slidesPerView: 4,
-  spaceBetween: 19,
-  loop: true,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: "swiper-button-prev",
-    clickable: true,
-  },
-  mousewheel: true,
-});
 
-const options = {
+
+/////////////////////////// DOM SELECTORS ///////////////////////////////////////
+
+let registerBtn = document.querySelectorAll(".register");
+let signinBtn = document.querySelectorAll(".signin");
+let modalReg = document.querySelector(".modal");
+let comedyBtn = document.querySelector("#comedy");
+let dramaBtn = document.querySelector("#drama");
+let actionBtn = document.querySelector("#action");
+let romanceBtn = document.querySelector("#romance");
+let fantasyBtn = document.querySelector("#fantasy");
+let animationBtn = document.querySelector("#animation");
+let form = document.querySelector('#search_films button');
+let searchInput = document.querySelector('#searchField');
+let resultsSwiper = document.querySelector(".mySwiper1 .swiper-wrapper");
+let resultsContainer = document.querySelector(".mySwiper1");
+let noResultsContainer = document.querySelector(".msg_searchResult");
+let recentsSwiper = document.querySelector(".mySwiper2 .swiper-wrapper");
+let genresSwiper = document.querySelector(".mySwiper3 .swiper-wrapper");
+let signupBtn = document.querySelector(".signup");
+let loginBtn = document.querySelector(".login");
+
+
+
+/////////////////////////// CREATE SWIPER ///////////////////////////////////////
+
+
+
+function createSwiper(swiperNumber) {
+  const swiper = new Swiper(`.mySwiper${swiperNumber}`, {
+
+    direction: 'horizontal',
+    loop: true,
+    slidesPerView: '4',
+    spaceBetween: '2%',
+  
+    navigation: {
+      nextEl: `.nextEl${swiperNumber}`,
+      prevEl: `.prevEl${swiperNumber}`,
+    },
+
+
+  
+  });
+}
+
+createSwiper(2);
+
+
+/////////////////////////// SWIPER HOVER ///////////////////////////////////////
+
+function initHover(){
+  document.querySelectorAll(".filmListItem").forEach(element => {
+    element.addEventListener('mouseover', function (e) {
+      element.querySelector(".hoverInfo").style.display = "flex";
+  })
+    element.addEventListener('mouseout', function (e) {
+      element.querySelector(".hoverInfo").style.display = "none";
+  
+  })
+  
+  })
+  
+  }
+
+/////////////////////////// DATABASE INFO ///////////////////////////////////////
+
+const dbInfo = {
   method: 'GET',
   headers: {
     accept: 'application/json',
@@ -18,141 +74,106 @@ const options = {
   }
 };
 
-
-// ///////////////////////////////////////////////////////////////////////////////////
-
-fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
+/////////////////////////// SEARCH SWIPER  ///////////////////////////////////////
 
 
+function displaySearchResults(movies) {
 
-const form = document.getElementById('search_films');
-form.addEventListener('submit', function (event) {
-  event.preventDefault();
+  if (searchInput.value === "") {
+    noResultsContainer.style.display = "block";
+    noResultsContainer.innerHTML = `Please enter a search term`;
+    resultsContainer.style.display = "none";
 
-  const movie = document.getElementById('searchField').value;
-  search_films(movie);
-});
 
-function search_films(search) {
+  } else   if (movies.length > 0) {
+    noResultsContainer.style.display = "none";
+    resultsContainer.style.display = "block";
+    resultsSwiper.innerHTML = "";
+    movies.forEach(searchInput => {
+      resultsSwiper.innerHTML +=
+      `
+      <div class="filmListItem" id="${searchInput.id}">
+        <div class="hoverInfo">
+        <h1>${searchInput.title}</h1>
+        <h2>${searchInput.release_date.slice(0, 4)}</h2>
+        <h3>${searchInput.genre_ids}</h3>
+        <img src="img/star.svg">
+        <h4>${searchInput.vote_average.toFixed(1)}</h4>
+        </div>
+        <div class="poster">
+          <img src="http://image.tmdb.org/t/p/w185${searchInput.poster_path}" alt="${searchInput.title}">
+        </div>
+      `;
+    });
+
+    createSwiper(1);
+    initHover();
+
+
+  }
+
+  else {
+    noResultsContainer.style.display = "block";
+    noResultsContainer.innerHTML = `There are no results for "${searchInput.value}"`;
+    resultsContainer.style.display = "none";
+  }
+}
+
+
+/////////////////////////// FETCH DATA FOR SEARCH SWIPER  ///////////////////////////////////////
+
+function searchMovies(search) {
   fetch(`
-  https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_text_query=${search}`, options)
+  https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_text_query=${search}`, dbInfo)
     .then(response => response.json())
     .then(data => displaySearchResults(data.results))
     .catch(err => console.error(err));
 }
 
-function displaySearchResults(movies) {
-  const resultsContainer = document.getElementById("container_searchFilms")
-  resultsContainer.innerHTML = '';
+/////////////////////////// SEARCH CLICK ///////////////////////////////////////
 
-  if (movies) {
-    movies.forEach(movie => {
-      const template = ` 
-      <div class="swiper-slide">
-        <img src="http://image.tmdb.org/t/p/w185${movie.poster_path}" alt="${movie.id}">
-      </div>
-    `;
-      resultsContainer.insertAdjacentHTML('beforeend', template);
-    });
-    createModal(movies)
-  }
-  else {
-    resultsContainer.innerHTML = "no results found";
-  }
-}
-
-// ///////////////////////// MODAL ///////////////////////////////////////////////
-
-function createModal(movies) {
-  movies.forEach(movie => {
-    const template = `
-      <div id="modal-${movie.id}" class="modal">
-        <div class="modal_content">    
-        <a href="#" class="modal_close">&times;</a>
-          <h1>${movie.title}</h1>
-          <img src="http://image.tmdb.org/t/p/w185${movie.poster_path}" alt="${movie.id}"> 
-          <p>${retrieveYear(movie.release_date)}</p>
-            <img src="Vector (3).png">
-          <p>${movie.vote_average}</p>
-          <p>${movie.genre_ids}</p>
-          <p> "${movie.overview}"</p>
-        </div>
-      </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', template);
-  });
-
-
-  const moviesImages = document.querySelectorAll('#container_searchFilms img');
-  moviesImages.forEach(image => {
-    image.addEventListener('click', function (event) {
-      event.preventDefault();
-      const movieId = this.getAttribute('alt');
-      openModal(movieId);
-    });
-  });
-
-  const closeButtons = document.querySelectorAll('.modal_close');
-  closeButtons.forEach(button => {
-    button.addEventListener('click', function (event) {
-      event.preventDefault();
-      const modalId = this.closest('.modal').id;
-      closeModal(modalId);
-    });
-  });
-}
-
-function openModal(modalId) {
-  const modal = document.getElementById(`modal-${modalId}`);
-  if (modal) {
-    modal.style.display = "block";
-  } else {
-    console.error(`Modal with ID 'modal-${modalId}' not found.`);
-  }
-}
-function closeModal(modalId) {
-  const modal = document.getElementById(modalId);
-  modal.style.display = "none";
-}
-
-function retrieveYear(date) {
-  var dateParts = date.split("-");
-  var releaseYear = dateParts[0];
-  return releaseYear;
-}
-
-
-/////////////////////////////MODAL POP UP/////////////////////////////////////////
-
-const modalPopup = document.getElementById('register');
-modalPopup.addEventListener('click', function (event) {
+form.addEventListener('click', function (event) {
   event.preventDefault();
-  const registerId = this.getAttribute('alt');
-  openModalPopUp();
+  console.log(searchInput.value);
+  searchMovies(searchInput.value);
 });
 
 
 
-const closeButtons = document.getElementById('closePopUp');
-closeButtons.addEventListener('click', function (event) {
-  event.preventDefault();
-  closeModalPopUp();
-});
+/////////////////////////// RECENTS SWIPER  ///////////////////////////////////////
 
 
-
-function openModalPopUp() {
-  const modal = document.getElementById('modal-popup');
-  if (modal) {
-    modal.style.display = "block";
-  } else {
-    console.error(`Modal with ID modal not found.`);
-  }
+function displayRecentMovies(apiData) {
+  for (i = 0; i < apiData.length; i++) {
+    recentsSwiper.innerHTML += `
+    <div class="filmListItem" id="${apiData[i].id}">
+      <div class="hoverInfo">
+      <h1>${apiData[i].title}</h1>
+      <h2>${apiData[i].release_date.slice(0, 4)}</h2>
+      <h3>${apiData[i].genre_ids}</h3>
+      <img src="img/star.svg">
+      <h4>${apiData[i].vote_average.toFixed(1)}</h4>
+      </div>
+      <div class="poster">
+        <img src="https://image.tmdb.org/t/p/original${apiData[i].poster_path}" alt="${apiData[i].title}"></div>
+      </div>
+      `;
 }
-function closeModalPopUp() {
-  const modal = document.getElementById('modal-popup');
-  modal.style.display = "none";
+
+createSwiper(2);
+initSwiperLinks(2);
+initHover();
+
+
 }
+
+
+function recentMovies() {
+  fetch(`
+  https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`, dbInfo)
+    .then(response => response.json())
+    .then(data => displayRecentMovies(data.results))
+    .catch(err => console.error(err));
+}
+
+recentMovies();
