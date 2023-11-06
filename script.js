@@ -15,7 +15,7 @@ let form = document.querySelector('#search_films button');
 let searchInput = document.querySelector('#searchField');
 let resultsSwiper = document.querySelector(".mySwiper1 .swiper-wrapper");
 let resultsContainer = document.querySelector(".mySwiper1");
-let noResultsContainer = document.querySelector(".msg_searchResult");
+let resultMsg = document.querySelector(".msg_searchResult");
 let recentsSwiper = document.querySelector(".mySwiper2 .swiper-wrapper");
 let genresSwiper = document.querySelector(".mySwiper3 .swiper-wrapper");
 let signupBtn = document.querySelector(".signup");
@@ -45,10 +45,7 @@ function createSwiper(swiperNumber) {
   });
 }
 
-createSwiper(2);
-
-
-/////////////////////////// SWIPER HOVER ///////////////////////////////////////
+/////////////////////////// MAKE SWIPER HOVERABLE ///////////////////////////////////////
 
 function initHover(){
   document.querySelectorAll(".filmListItem").forEach(element => {
@@ -63,6 +60,54 @@ function initHover(){
   })
   
   }
+
+/////////////////////////// REGISTER AND SIGNIN BUTTONS ///////////////////////////////////////
+
+function disableScroll() {
+  document.body.classList.add("stopScrolling"); 
+} 
+
+function enableScroll() { 
+  document.body.classList.remove("stopScrolling"); 
+} 
+
+registerBtn.forEach(element => {
+element.addEventListener('click', function (e) {
+  e.preventDefault();
+  console.log("register");
+  modalReg.style.display = "block";
+  disableScroll()
+  document.querySelector(".signup").classList.add("signupactive");
+  document.querySelector(".login").classList.remove("loginactive");
+  document.querySelector(".reglog #submit").value = "Register";
+})})
+
+signupBtn.addEventListener('click', function (e) {
+e.preventDefault();
+document.querySelector(".signup").classList.add("signupactive");
+document.querySelector(".login").classList.remove("loginactive");
+document.querySelector(".reglog #submit").value = "Register";
+})
+
+
+signinBtn.forEach(element => {
+element.addEventListener('click', function (e) {
+  e.preventDefault();
+  modalReg.style.display = "block";
+  disableScroll()
+  document.querySelector(".login").classList.add("loginactive");
+  document.querySelector(".signup").classList.remove("signupactive");
+  document.querySelector(".reglog #submit").value = "Login";
+})})
+
+loginBtn.addEventListener('click', function (e) {
+e.preventDefault();
+document.querySelector(".login").classList.add("loginactive");
+document.querySelector(".signup").classList.remove("signupactive");
+document.querySelector(".reglog #submit").value = "Login";
+})
+
+
 
 /////////////////////////// DATABASE INFO ///////////////////////////////////////
 
@@ -80,13 +125,13 @@ const dbInfo = {
 function displaySearchResults(movies) {
 
   if (searchInput.value === "") {
-    noResultsContainer.style.display = "block";
-    noResultsContainer.innerHTML = `Please enter a search term`;
+    resultMsg.style.display = "block";
+    resultMsg.innerHTML = `Please enter a search term`;
     resultsContainer.style.display = "none";
 
-
   } else   if (movies.length > 0) {
-    noResultsContainer.style.display = "none";
+    resultMsg.style.display = "block";
+    resultMsg.innerHTML = `results for "${searchInput.value}"`;
     resultsContainer.style.display = "block";
     resultsSwiper.innerHTML = "";
     movies.forEach(searchInput => {
@@ -97,7 +142,7 @@ function displaySearchResults(movies) {
         <h1>${searchInput.title}</h1>
         <h2>${searchInput.release_date.slice(0, 4)}</h2>
         <h3>${searchInput.genre_ids}</h3>
-        <img src="img/star.svg">
+        <img src="Vector (3).png">
         <h4>${searchInput.vote_average.toFixed(1)}</h4>
         </div>
         <div class="poster">
@@ -113,8 +158,8 @@ function displaySearchResults(movies) {
   }
 
   else {
-    noResultsContainer.style.display = "block";
-    noResultsContainer.innerHTML = `There are no results for "${searchInput.value}"`;
+    resultMsg.style.display = "block";
+    resultMsg.innerHTML = `There are no results for "${searchInput.value}"`;
     resultsContainer.style.display = "none";
   }
 }
@@ -144,28 +189,32 @@ form.addEventListener('click', function (event) {
 
 
 function displayRecentMovies(apiData) {
+  
+  recentsSwiper.innerHTML = "";
   for (i = 0; i < apiData.length; i++) {
     recentsSwiper.innerHTML += `
     <div class="filmListItem" id="${apiData[i].id}">
       <div class="hoverInfo">
-      <h1>${apiData[i].title}</h1>
-      <h2>${apiData[i].release_date.slice(0, 4)}</h2>
-      <h3>${apiData[i].genre_ids}</h3>
-      <img src="img/star.svg">
-      <h4>${apiData[i].vote_average.toFixed(1)}</h4>
+        <h1>${apiData[i].title}</h1>
+        <h2>${apiData[i].release_date.slice(0, 4)}</h2>
+        <h3>${apiData[i].genre_ids}</h3>
+        <img src="Vector (3).png">
+        <h4>${apiData[i].vote_average.toFixed(1)}</h4>
       </div>
       <div class="poster">
-        <img src="https://image.tmdb.org/t/p/original${apiData[i].poster_path}" alt="${apiData[i].title}"></div>
+        <img src="https://image.tmdb.org/t/p/original${apiData[i].poster_path}" alt="${apiData[i].title}">
       </div>
+    </div>
       `;
 }
 
 createSwiper(2);
-initSwiperLinks(2);
 initHover();
 
 
 }
+
+/////////////////////////// FETCH DATA FOR RECENTS SWIPER  ///////////////////////////////////////
 
 
 function recentMovies() {
@@ -177,3 +226,101 @@ function recentMovies() {
 }
 
 recentMovies();
+
+
+
+/////////////////////////// GENRES SWIPER  ///////////////////////////////////////
+
+function displayMoviesByGenre(apiData) {
+  genresSwiper.innerHTML = "";
+  for (i = 0; i < apiData.length; i++) {
+    genresSwiper.innerHTML += `<div class="swiper-slide">
+    <div class="filmListItem" id="${apiData[i].id}">
+      <div class="hoverInfo">
+        <h1>${apiData[i].title}</h1>
+        <h2>${apiData[i].release_date.slice(0, 4)}</h2>
+        <h3>${apiData[i].genre_ids}</h3>
+        <img src="Vector (3).png">
+        <h4>${apiData[i].vote_average.toFixed(1)}</h4>
+      </div>
+      <div class="poster">
+        <img src="https://image.tmdb.org/t/p/original${apiData[i].poster_path}" alt="${apiData[i].title}">
+      </div>
+    </div>`;
+}
+
+createSwiper(3);
+initHover();
+
+}
+
+
+/////////////////////////// FETCH DATA FOR GENRES SWIPER  ///////////////////////////////////////
+
+
+function moviesByGenre(genre) {
+  fetch(`
+  https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${genre}`, dbInfo)
+    .then(response => response.json())
+    .then(data => displayMoviesByGenre(data.results))
+    .catch(err => console.error(err));
+}
+
+
+moviesByGenre(`35`);
+
+
+
+/////////////////////////// GENRE BUTTONS  ///////////////////////////////////////
+
+
+function resetGenreButtons() {
+  comedyBtn.classList.remove("activeGenre");
+  dramaBtn.classList.remove("activeGenre");
+  actionBtn.classList.remove("activeGenre");
+  romanceBtn.classList.remove("activeGenre");
+  fantasyBtn.classList.remove("activeGenre");
+  animationBtn.classList.remove("activeGenre");
+}
+
+comedyBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  moviesByGenre(`35`);
+  resetGenreButtons()
+  comedyBtn.classList.add("activeGenre");
+})
+
+dramaBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  moviesByGenre(`18`);
+  resetGenreButtons()
+  dramaBtn.classList.add("activeGenre");
+})
+
+actionBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  moviesByGenre(`28`);
+  resetGenreButtons()
+  actionBtn.classList.add("activeGenre");
+})
+
+romanceBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  moviesByGenre(`10749`);
+  resetGenreButtons()
+  romanceBtn.classList.add("activeGenre");
+})
+
+fantasyBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  moviesByGenre(`14`);
+  resetGenreButtons()
+  fantasyBtn.classList.add("activeGenre");
+})
+
+animationBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  moviesByGenre(`16`);
+  resetGenreButtons()
+  animationBtn.classList.add("activeGenre");
+})
