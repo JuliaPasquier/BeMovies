@@ -20,6 +20,8 @@ let recentsSwiper = document.querySelector(".mySwiper2 .swiper-wrapper");
 let genresSwiper = document.querySelector(".mySwiper3 .swiper-wrapper");
 let signupBtn = document.querySelector(".signup");
 let loginBtn = document.querySelector(".login");
+let closeModal = document.querySelector("#closePopUp");
+let modalButton = document.querySelector("#modal-popup .btn-primary");
 
 
 
@@ -40,8 +42,9 @@ function createSwiper(swiperNumber) {
       prevEl: `.prevEl${swiperNumber}`,
     },
 
+    preventClicks: false,
+    preventClicksPropagation: false,
 
-  
   });
 }
 
@@ -61,6 +64,10 @@ function initHover(){
   
   }
 
+/////////////////////////// MAKE SWIPER CLICKABLE ///////////////////////////////////////
+
+
+
 /////////////////////////// REGISTER AND SIGNIN BUTTONS ///////////////////////////////////////
 
 function disableScroll() {
@@ -77,16 +84,12 @@ element.addEventListener('click', function (e) {
   console.log("register");
   modalReg.style.display = "block";
   disableScroll()
-  document.querySelector(".signup").classList.add("signupactive");
-  document.querySelector(".login").classList.remove("loginactive");
-  document.querySelector(".reglog #submit").value = "Register";
+  modalButton.innerText = "Register";
 })})
 
 signupBtn.addEventListener('click', function (e) {
 e.preventDefault();
-document.querySelector(".signup").classList.add("signupactive");
-document.querySelector(".login").classList.remove("loginactive");
-document.querySelector(".reglog #submit").value = "Register";
+modalButton.innerText = "Register";
 })
 
 
@@ -95,18 +98,19 @@ element.addEventListener('click', function (e) {
   e.preventDefault();
   modalReg.style.display = "block";
   disableScroll()
-  document.querySelector(".login").classList.add("loginactive");
-  document.querySelector(".signup").classList.remove("signupactive");
-  document.querySelector(".reglog #submit").value = "Login";
+  modalButton.innerText = "Login";
 })})
 
 loginBtn.addEventListener('click', function (e) {
 e.preventDefault();
-document.querySelector(".login").classList.add("loginactive");
-document.querySelector(".signup").classList.remove("signupactive");
-document.querySelector(".reglog #submit").value = "Login";
+modalButton.innerText = "Login";
 })
 
+closeModal.addEventListener('click', function (e) {
+    e.preventDefault();
+    modalReg.style.display = "none";
+    enableScroll()
+})
 
 
 /////////////////////////// DATABASE INFO ///////////////////////////////////////
@@ -153,6 +157,7 @@ function displaySearchResults(movies) {
 
     createSwiper(1);
     initHover();
+    initSwiperLinks(1);
 
 
   }
@@ -209,6 +214,7 @@ function displayRecentMovies(apiData) {
 }
 
 createSwiper(2);
+initSwiperLinks(2);
 initHover();
 
 
@@ -251,6 +257,7 @@ function displayMoviesByGenre(apiData) {
 
 createSwiper(3);
 initHover();
+initSwiperLinks(3);
 
 }
 
