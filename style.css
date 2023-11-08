@@ -111,8 +111,11 @@ button {
   cursor: pointer;
 }
 
-/* ////////////////////// MODAL ////////////////////////////////// */
 
+/* ////////////////////// MODAL ////////////////////////////////// */
+.msg_searchResult{
+  color: white;
+}
 .modal {
   display: none;
   position: fixed;
@@ -220,7 +223,9 @@ body {
   width: 100%;
   height: 100%;
 }
-
+.msg_latestReleases{
+  color: white;
+}
 /* ////////////////////////////////////////////////// */
 
 .latest_releases {
