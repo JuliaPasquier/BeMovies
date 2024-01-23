@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #191B20;
+    font-family: 'Inria Sans', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/***** Header and footer *****/
+
+
+.section1 {
+    position: sticky;
+    top:0;
+    z-index: 2;
+}
+
+.section1, .section5 {
+    background-color: #141517;
+    width: 100vw;
+}
+
+.section1 header, .section5 footer {
+    width: 90vw;
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section1 header {
+    height: 6.25rem;
+}
+
+.section5 footer {
+    height: 11.625rem
+}
+
+.logo {
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 2.25rem;
+    font-weight: 700;
+}
+
+.logo span {
+    color: #C00;
+}
+
+.nav a {
+    color: #FFF;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.02625rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-left: 1.8125rem;
+}
+
+.copyright {
+    color: #B8B8B8;
+    font-size: 0.875rem;
+    font-weight: 300;
+}
+
+
+
+/***** content *****/
+
+#section2 .container, #section3 .container, #section4 .container, .modalReg .container {
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+    }
+
+.searchBar {
+    margin-bottom: 5rem;
+}
+
+#section2  {
+    padding-top: 5rem;
+}
+
+#section3, #section4  {
+    padding-top: 10rem;
+}
+
+#section4  {
+    padding-bottom: 10rem;
+}
+    
+p {
+    width: 62rem;
+    margin-inline: auto;
+    color: #FFF;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 1rem;
+}
+    
+#section4 p, #section4 a {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+    
+.genreNav {
+    display: flex;
+    gap: 2rem;
+    border-bottom: solid 1px white;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+}
+
+/***** Search Bar *****/
+
+.searchInput {
+    height: 2.75rem;
+    width: 17rem;
+    border-radius: 0.5rem 0rem 0rem 0.5rem;
+    border: none;
+    padding-left: 1rem;
+}
+
+.searchBtn {
+    background-color:#C00;
+    border: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    background-image: url(img/arrow-search.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
+}
+
+.searchBtn:hover {
+    cursor: pointer;
+}
+
+.swiper-slide{
+    flex-shrink: 1!important;
+}
+
+/***** Swipers *****/
+
+.films {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prevEl1 {
+    transform: scaleX(-1);
+    margin-right: 1rem;
+}
+
+.nextEl1 {
+    margin-left: 1rem;
+}
+
+.prevEl2 {
+    transform: scaleX(-1);
+    margin-right: 1rem;
+}
+
+.nextEl2 {
+    margin-left: 1rem;
+}
+
+.prevEl3 {
+    transform: scaleX(-1);
+    margin-right: 1rem;
+}
+
+.nextEl3 {
+    margin-left: 1rem;
+}
+
+.swiper {
+    width: 62rem;
+}
+
+.swiper .poster {
+    width: 14.625rem;
+    height: 21.9375rem;
+    background-color: gray;
+}
+
+.swiper .poster img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/***** Modal Register / Signin *****/
+
+.modalReg {
+    display: none;
+}
+
+.modalReg .container {
+    width: 25.625rem;
+    height: 38rem;
+    background: #000;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 3;
+}
+
+.signUpLogin {
+    display: flex;
+    margin-bottom: 4rem;
+}
+
+.signUpLogin a {
+    color: #FFF;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.045rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.signUpLogin div {
+    width: 9.125rem;
+    height: 3.375rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup {
+    border-radius: 0.5rem 0rem 0rem 0.5rem;
+    border: 1px solid #FFF;
+    border-right: none;
+}
+
+.login {
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
+    border: 1px solid #C00;
+    background-color: #C00;
+}
+
+.modalReg .container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 18rem;
+}
+
+.username, .password, .submit {
+    padding-left: 1rem;
+    width: 18rem;
+    height: 2.75rem;
+    border-radius: 0.5rem;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.submit {
+    background: #C00;
+    color: #FFF;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.0375rem;
+    text-transform: uppercase;
+    margin-block: 2rem;
+}
+
+.modalReg .container form p, .modalReg .container form a {
+    align-self: flex-start;
+}
+
+.remember {
+    color: white;
+    width: 18rem;
+    margin-bottom: 1rem;
+}
+
+.checkbox { 
+    vertical-align: middle; 
+    position: relative; 
+    bottom: 0.01rem; 
+} 
+
+.forgot {
+    color: #C00;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+.member {
+    color: #FFF;
+    font-size: 1rem;
+}
+
+.member a {
+    color: #C00;
+    text-decoration: none;
+}
+
+.greyOut {
+    position: fixed;
+    background: black;
+    top: 0;
+    opacity: 50%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+.stopScrolling {
+    height: 100vh;
+    overflow: hidden;
+    }
+
+
+/***** Modal Information *****/
+
+.modalInfo {
+    display: none;
+}
+
+.modalInfo .container {
+    width: 46.375rem;
+    height: 32.875rem;
+    background: #000;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 3;
+    display: flex;
+    gap: 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modalInfo .container .poster {
+    width: 14.625rem;
+    height: 21.9375rem;
+    border: 1px white solid;
+}
+
+.modalInfo .container .poster img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.modalInfo .container .info {
+    width: 20rem;
+}
+
+
+.modalInfo .container h1 {
+    color: #C00;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.0375rem;
+    text-transform: uppercase;
+}
+
+.modalInfo .container h2 {
+    color: #E9E9E9;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.02625rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.modalInfo .container h3 {
+    color: #C00;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+
+}
+
+.modalInfo .container h4 {
+    color: #E9E9E9;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.02625rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+
+}
+
+.modalInfo .container p {
+    width: 100%;
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 150%;
+    letter-spacing: 0.03rem;
+}
+
+.modalInfo .container .cast {
+    display: flex;
+    gap:1rem;
+}
+
+.modalInfo .container .cast h4 {
+margin-top: 0.25rem;
+}
+

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <title>beMovies</title>
+</head>
+
+<body>
+
+    <section class="section1">
+        <header>
+            <div class="logo"><span>be</span>movies</div>
+            <div class="nav">
+                <a class="search" href="#section2">search</a>
+                <a class="latest" href="#section3">latest</a>
+                <a class="genres" href="#section4">genres</a>
+                <a class="register" href="#">register</a>
+                <a class="signin" href="#">signin</a>
+            </div>
+        </header>
+    </section>
+    </div>
+
+    <section id="section2">
+        <div class="container">
+            <form class="searchBar" id="searchBar">
+                <input class="searchInput" type="text" name="searchInput" id="searchInput"
+                    placeholder="Enter the name of a movie.."><label for="searchInput"><input class="searchBtn"
+                        type="submit" name="searchBtn" id="searchBtn" value=" "></label>
+            </form>
+            <div class="searchResults">
+                <p>Results for “”</p>
+                <div class="films">
+                    <a class="prevEl1" href="#"><img src="img/arrow.svg" alt=""></a>
+                    <div class="swiper swiper1">
+                        <div class="swiper-wrapper" id="searchResult">
+                            <!--                             <div class="swiper-slide">
+                                <div class="poster"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div div class="poster"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="poster"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="poster"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="poster"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="poster"></div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <a class="nextEl1" href="#"><img src="img/arrow.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section3">
+        <div class="container">
+            <p>Latest releases</p>
+            <div class="films">
+                <a class="prevEl2" href="#"><img src="img/arrow.svg" alt=""></a>
+                <div class="swiper swiper2">
+                    <div class="swiper-wrapper" id="latestRelease">
+                        <!-- <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div> -->
+                    </div>
+                </div>
+                <a class="nextEl2" href="#"><img src="img/arrow.svg" alt=""></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="section4">
+        <div class="container">
+            <p>movies by genre</p>
+            <div class="genreNav" id="genreNav">
+                <button class="btnGenre">Comedy</button>
+                <button class="btnGenre">Drama</button>
+                <button class="btnGenre">Action</button>
+                <button class="btnGenre">Romance</button>
+                <button class="btnGenre">Fantasy</button>
+                <button class="btnGenre">Animation</button>
+            </div>
+            <div class="films">
+                <a class="prevEl3" href="#"><img src="img/arrow.svg" alt=""></a>
+                <div class="swiper swiper3">
+                    <div class="swiper-wrapper" id="genre">
+                        <!-- <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="poster"></div>
+                        </div> -->
+                    </div>
+                </div>
+                <a class="nextEl3" href="#"><img src="img/arrow.svg" alt=""></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section5">
+        <footer>
+            <div class="logo"><span>be</span>movies</div>
+            <div class="nav">
+                <a class="search" href="#section2">search</a>
+                <a class="latest" href="#section3">latest</a>
+                <a class="genres" href="#section4">genres</a>
+                <a class="register" href="#">register</a>
+                <a class="signin" href="#">signin</a>
+            </div>
+            <div class="copyright">@2023 - All rights reserved</div>
+        </footer>
+    </section>
+
+    <section class="modalInfo">
+        <div class="container">
+            <div class="poster"><img src="img/3a9723ae5397841adf7fbaed84bd30b2.jpeg" alt=""></div>
+            <!-- <div class="info">
+                <h1>The Godfather</h1>
+                <h2>1972</h2>
+                <h3><img src="img/star.svg" alt="">8.7</h3>
+                <h4>crime/drama</h4>
+                <p class="summary">Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.</p>
+                <div class="cast">
+                    <h4>cast:</h4>
+                    <p>Marlon Brando, Al Pacino, James Caan, Robert Duvall</p>
+                </div> -->
+        </div>
+        </div>
+        <div class="greyOut"></div>
+    </section>
+
+    <section class="modalReg">
+        <div class="container">
+            <div class="signUpLogin">
+                <a href="#">
+                    <div class="signup">Signup</div>
+                </a>
+                <a href="#">
+                    <div class="login">Login</div>
+                </a>
+            </div>
+            <form>
+                <input class="username" type="text" name="username" id="username" placeholder="Username">
+                <input class="password" type="password" name="password" id="password" placeholder="Password">
+                <div class="remember">
+                    <input class="checkbox" type="checkbox" id="checkbox" name="checkbox" value="remember">
+                    <label class="rememberMe" for="checkbox">remember me</label>
+                </div>
+                <input class="submit" type="submit" name="submit" id="submit" value="Login">
+                <a class="forgot" href="#">I forgot my password</a>
+                <p class="member">Not a member yet? <a href="#">Sign up</a></p>
+            </form>
+        </div>
+        <div class="greyOut"></div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.6/js/swiper.min.js"></script>
+</body>
+
+</html>
