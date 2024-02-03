@@ -162,7 +162,6 @@ function createModal(movies) {
               <h4>${movie.genre_ids}</h4>
               <p class="summary">${movie.overview}</p>
               <div class="cast">
-                  <h4>cast:</h4>
               </div>
           </div>
       </div>

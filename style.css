@@ -27,7 +27,7 @@ html {
 
 .section1, .section5 {
     background-color: #141517;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .section1 header, .section5 footer {
@@ -39,7 +39,7 @@ html {
 }
 
 .section1 header {
-    height: 6.25rem;
+    height: 6rem;
 }
 
 .section5 footer {
@@ -65,6 +65,10 @@ html {
     text-transform: uppercase;
     text-decoration: none;
     margin-left: 1.8125rem;
+}
+
+.nav a:hover {
+    color: #C00;
 }
 
 .copyright {
@@ -115,15 +119,24 @@ p {
     text-decoration: none;
     color: white;
 }
+
+
     
 .genreNav {
+
+    
     display: flex;
     gap: 2rem;
     border-bottom: solid 1px white;
     padding-bottom: 1rem;
     margin-bottom: 3rem;
     margin-top: 2rem;
-}
+    cursor: pointer;
+
+.genreNav:active {
+    background-color: red;
+
+}}
 
 /***** Search Bar *****/
 
@@ -144,12 +157,23 @@ p {
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 0rem 0.5rem 0.5rem 0rem;
+    cursor: pointer;
 }
 
 .searchBtn:hover {
     cursor: pointer;
 }
 
+button.btnGenre {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+}
+
+.btnGenre:hover {
+    background-color: red;
+    color: white;
+}
 .swiper-slide{
     flex-shrink: 1!important;
 }
